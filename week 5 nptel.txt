@@ -1,0 +1,36 @@
+def cgpacal(studentinfo,gradeinfo):
+  gradict = { 'A':10, 'AB':9, 'B':8, 'BC':7, 'C':6, 'CD':5, 'D':4}
+  for x in studentinfo:
+    cgpa = 0
+    count = 0
+    for y in gradeinfo:
+      if x[0]==y[3]:
+        cgpa+=gradict[y[4]]
+        count+=1
+    if cgpa==0:
+      x.append(round(0,2))
+    else:
+      x.append(round(cgpa/count,2))
+  studentinfo.sort()
+  for x in studentinfo:
+    print(x[0]+'~'+x[1]+'~'+str(x[2]))
+        
+courseinfo = []
+studentinfo = []
+gradeinfo = []
+x= input()
+while x!='Students':
+  x = input()
+  courseinfo.append(x.split('~'))
+  
+x = input()  
+while x!='Grades':
+  studentinfo.append(x.split('~'))
+  x = input()
+
+x = input()
+while x != 'EndOfInput':
+  gradeinfo.append(x.split('~'))
+  x = input()
+courseinfo = courseinfo[:-1]
+cgpacal(studentinfo,gradeinfo)
